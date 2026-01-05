@@ -10,7 +10,7 @@ stages:
             targetType: 'inline'
             script: |
               sonar-scanner `
-                                        "-Dsonar.host.url=http:///135.222.42.93:9000" `
+                                        "-Dsonar.host.url=http://135.222.42.93:9000" `
                                         "-Dsonar.token=sqp_9bbfc903a3fa5730f5afe83cda93d0d0df13867b" `
                                         "-Dsonar.projectKey=Monolithic-Setup" `
                                         "-Dsonar.sources=$(System.DefaultWorkingDirectory)/src"
