@@ -3,7 +3,7 @@ pool: pkagent
 stages:
   - stage: scanning
     jobs:
-      - job: sonar scanning
+      - job: sonarscanning
         steps:
         - task: PowerShell@2
           inputs:
