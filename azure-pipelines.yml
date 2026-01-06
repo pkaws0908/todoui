@@ -1,14 +1,14 @@
 trigger: none
 pool: pkagent
 stages:
-  - stage: scanning
-    jobs:
-      - job: sonarscanning
-        steps:
-        - task: PowerShell@2
-          inputs:
-            targetType: 'inline'
-            script: 'sonar-scanner.bat -D"sonar.projectKey=todoui" -D"sonar.sources=." -D"sonar.host.url=http://20.197.45.114:9000" -D"sonar.login=sqp_3c8f7895baa9e1a01e10012b89c8878a0c4d3bfe"'
+  # - stage: scanning
+  #   jobs:
+  #     - job: sonarscanning
+  #       steps:
+  #       - task: PowerShell@2
+  #         inputs:
+  #           targetType: 'inline'
+  #           script: 'sonar-scanner.bat -D"sonar.projectKey=todoui" -D"sonar.sources=." -D"sonar.host.url=http://20.197.45.114:9000" -D"sonar.login=sqp_3c8f7895baa9e1a01e10012b89c8878a0c4d3bfe"'
   - stage: BuildArtifact
     jobs:
       - job: Installnode
@@ -17,8 +17,7 @@ stages:
           inputs:
             versionSource: 'spec'
             versionSpec: '16.x'
-      - job: BuildNode
-        steps:
+     
         - task: PowerShell@2
           inputs:
             targetType: 'inline'
