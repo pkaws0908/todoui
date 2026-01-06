@@ -8,5 +8,10 @@ stages:
         - task: PowerShell@2
           inputs:
             targetType: 'inline'
-            script: 'sonar-scanner.bat -D"sonar.projectKey=todoui" -D"sonar.sources=." -D"sonar.host.url=http://135.222.42.93:9000" -D"sonar.login=sqp_9bbfc903a3fa5730f5afe83cda93d0d0df13867b"'
+            script: |
+              sonar-scanner \
+                -Dsonar.projectKey=todoui \
+                -Dsonar.sources=. \
+                -Dsonar.host.url=http://20.197.45.114:9000 \
+                -Dsonar.login=sqp_3c8f7895baa9e1a01e10012b89c8878a0c4d3bfe
     
