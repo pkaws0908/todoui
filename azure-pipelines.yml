@@ -24,3 +24,9 @@ stages:
             script: |
               npm install 
               npm run build
+
+        - task: PublishBuildArtifacts@1
+          inputs:
+           PathtoPublish: '$(System.DefaultWorkingDirectory)/build'
+           ArtifactName: 'todobuild'
+           publishLocation: 'Container'
