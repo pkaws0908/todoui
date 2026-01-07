@@ -56,5 +56,7 @@ stages:
           inputs:
             sshEndpoint: 'pkservice'
             runOptions: 'inline'
-            inline: 'sudo cp -r /home/pkadmin/* /usr/share/nginx/html/'
+            inline: |
+              sudo rm -rf /usr/share/nginx/html/*
+              sudo cp -r /home/pkadmin/* /usr/share/nginx/html/
             readyTimeout: '20000'
