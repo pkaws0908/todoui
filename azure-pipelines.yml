@@ -30,3 +30,13 @@ stages:
            PathtoPublish: '$(System.DefaultWorkingDirectory)/build'
            ArtifactName: 'todobuild'
            publishLocation: 'Container'
+  - stage: DeployStage
+    jobs:
+      - job: DownloadArtifact
+        steps:
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            buildType: 'current'
+            artifactName: 'todobuild'
+            targetPath: '$(System.DefaultWorkingDirectory)/todobuild'
+            
