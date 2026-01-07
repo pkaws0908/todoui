@@ -49,12 +49,12 @@ stages:
             sshEndpoint: 'pkservice'
             sourceFolder: '$(System.DefaultWorkingDirectory)/todobuild'
             contents: '**'
-            targetFolder: '/home/pkadmin/*'
+            targetFolder: '/home/pkadmin/'
             readyTimeout: '20000'
 
         - task: SSH@0
           inputs:
             sshEndpoint: 'pkservice'
             runOptions: 'inline'
-            inline: 'sudo cp -r /home/pkadmin /usr/share/nginx/html/'
+            inline: 'sudo cp -r /home/pkadmin /* /usr/share/nginx/html/'
             readyTimeout: '20000'
