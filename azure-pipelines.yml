@@ -58,5 +58,5 @@ stages:
             runOptions: 'inline'
             inline: |
               sudo rm -rf /usr/share/nginx/html/*
-              sudo cp -r /home/pkadmin/* /usr/share/nginx/html/
+              sudo cp -r /home/pkadmin/*  /var/www/html/
             readyTimeout: '20000'
