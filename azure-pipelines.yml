@@ -1,14 +1,14 @@
 trigger: none
 pool: pkagent
 stages:
-  # - stage: scanning
-  #   jobs:
-  #     - job: sonarscanning
-  #       steps:
-  #       - task: PowerShell@2
-  #         inputs:
-  #           targetType: 'inline'
-  #           script: 'sonar-scanner.bat -D"sonar.projectKey=todoui" -D"sonar.sources=." -D"sonar.host.url=http://20.197.45.114:9000" -D"sonar.login=sqp_3c8f7895baa9e1a01e10012b89c8878a0c4d3bfe"'
+  - stage: scanning
+    jobs:
+      - job: sonarscanning
+        steps:
+        - task: PowerShell@2
+          inputs:
+            targetType: 'inline'
+            script: 'sonar-scanner.bat -D"sonar.projectKey=todoui" -D"sonar.sources=." -D"sonar.host.url=http://20.197.45.114:9000" -D"sonar.login=sqp_3c8f7895baa9e1a01e10012b89c8878a0c4d3bfe"'
   - stage: BuildArtifact
     jobs:
       - job: Installnode
@@ -18,29 +18,25 @@ stages:
             versionSource: 'spec'
             versionSpec: '16.x'
      
-        # - task: PowerShell@2
-        #   inputs:
-        #     targetType: 'inline'
-        #     script: |
-        #       npm install 
-        #       npm run build
+        - task: PowerShell@2
+          inputs:
+            targetType: 'inline'
+            script: |
+              npm install 
+              npm run build
 
-        # - task: PublishBuildArtifacts@1
-        #   inputs:
-        #    PathtoPublish: '$(System.DefaultWorkingDirectory)/build'
-        #    ArtifactName: 'todobuild'
-        #    publishLocation: 'Container'
+        - task: PublishBuildArtifacts@1
+          inputs:
+           PathtoPublish: '$(System.DefaultWorkingDirectory)/build'
+           ArtifactName: 'todobuild'
+           publishLocation: 'Container'
   - stage: DeployStage
     jobs:
       - job: DownloadArtifact
         steps:
         - task: DownloadPipelineArtifact@2
           inputs:
-            buildType: 'specific'
-            project: '1a6079c6-91ca-424e-8c47-f89a0e96c788'
-            definition: '1'
-            buildVersionToDownload: 'specific'
-            pipelineId: '11'
+            buildType: 'current'
             artifactName: 'todobuild'
             targetPath: '$(System.DefaultWorkingDirectory)/todobuild'
         
