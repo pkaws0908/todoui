@@ -39,4 +39,12 @@ stages:
             buildType: 'current'
             artifactName: 'todobuild'
             targetPath: '$(System.DefaultWorkingDirectory)/todobuild'
+        
+        - task: CopyFilesOverSSH@0
+          inputs:
+            sshEndpoint: 'pkservice'
+            sourceFolder: '$(System.DefaultWorkingDirectory)/todobuild'
+            contents: '**'
+            targetFolder: '/home/pkadmin'
+            readyTimeout: '20000'
             
