@@ -17,3 +17,8 @@ stages:
             script: |
               npm install
               npm run build
+        - task: PublishPipelineArtifact@1
+          inputs:
+            targetPath: '$(System.DefaultWorkingDirectory)/build'
+            artifact: 'todobuild'
+            publishLocation: 'pipeline'
