@@ -52,8 +52,8 @@ stages:
               inputs:
                 targetType: 'inline'
                 script: |
-                  cp -r /home/sysadmin/todobuild/* /var/www/html/
+                  sudo cp -r /home/sysadmin/todobuild/* /var/www/html/
                   
-                  systemctl restart nginx
+                  sudo systemctl restart nginx
 
 
