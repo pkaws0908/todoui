@@ -16,4 +16,4 @@ stages:
             targetType: 'inline'
             script: |
               npm install
-              npm run buils
+              npm run build
