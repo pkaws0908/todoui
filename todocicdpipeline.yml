@@ -10,15 +10,44 @@ stages:
           inputs:
             versionSource: 'spec'
             versionSpec: '18.x'
-        - task: PowerShell@2
-          displayName: npminstallbuild
-          inputs:
-            targetType: 'inline'
-            script: |
-              npm install
-              npm run build
+        # - task: PowerShell@2
+        #   displayName: npminstallbuild
+        #   inputs:
+        #     targetType: 'inline'
+        #     script: |
+        #       npm install
+        #       npm run build
         - task: PublishPipelineArtifact@1
           inputs:
             targetPath: '$(System.DefaultWorkingDirectory)/build'
             artifact: 'todobuild'
             publishLocation: 'pipeline'
+  - stage: CDStage
+    jobs:
+  # Track deployments on the environment.
+    - deployment: DeployWeb
+      displayName: deploy Web App
+      # Creates an environment if it doesn't exist.
+      environment:
+          name: tododev # Name of environment.
+          resourceName: tododev001 # Name of resource.
+          resourceType: virtualMachine # Type of environment resource.
+      strategy:
+        # Default deployment strategy, more coming...
+        runOnce:
+          deploy:
+            steps:
+            - task: DownloadBuildArtifacts@1
+              inputs:
+                buildType: 'specific'
+                project: '1a6079c6-91ca-424e-8c47-f89a0e96c788'
+                pipeline: '3'
+                buildVersionToDownload: 'specific'
+                buildId: '25'
+                downloadType: 'single'
+                artifactName: 'todobuild'
+                downloadPath: '/home/sysadmin/todobuild'
+      
+        
+
+
