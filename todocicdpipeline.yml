@@ -1,0 +1,19 @@
+trigger: none
+pool: pkagent
+stages:
+  - stage: NodeinstallandRun
+    jobs:
+      - job: NodeInstllandRun
+        steps:
+        - task: NodeTool@0
+          displayName: nodeinstallser
+          inputs:
+            versionSource: 'spec'
+            versionSpec: '18.x'
+        - task: PowerShell@2
+          displayName: npminstallbuild
+          inputs:
+            targetType: 'inline'
+            script: |
+              npm install
+              npm run buils
